@@ -60,7 +60,7 @@ namespace Esercizio_02_C
       {
         Environment.Exit(0);
       }
-    }
+    }//CheckContinue
     private static string GetValidString(Action WriteQuestion, int iBase, SortedDictionary<char, int> dctDecimalValues)
     {
       string sResult;
@@ -71,7 +71,7 @@ namespace Esercizio_02_C
         sResult = AskValidNumber(WriteQuestion);
       }
       return sResult;
-    }
+    }//GetValidString
     private static int GetValidBase(Action WriteQuestion, int iMinAllowed, int iMaxValue)
     {
       string sResult;
@@ -82,19 +82,18 @@ namespace Esercizio_02_C
         sResult = AskValidNumber(WriteQuestion);
       }
       return int.Parse(sResult);
-    }
+    }//GetValidBase
     private static string AskValidNumber(Action WriteQuestion)
     {
       string sResult;
       WriteQuestion();
       sResult = AskInput();
       return sResult;
-    }
+    }//AskValidNumber
     private static void WriteInvalidValue(char cDigit, int iBase)
     {
       Write($"\nIl valore {cDigit} non è valido per la base: {iBase}");
-
-    }
+    }//WriteInvalidValue
     private static bool InvalidString(string sValue, int iBase, SortedDictionary<char, int> dctDecimalValues)
     {
       Dictionary<char, int> dctAlphabet = dctDecimalValues.Take(iBase).ToDictionary(x => x.Key, x => x.Value);
@@ -107,11 +106,7 @@ namespace Esercizio_02_C
         }
       }
       return false;
-    }
-    private static bool InvalidInt(string sValue)
-    {
-      return !int.TryParse(sValue, out int _);
-    }
+    }//InvalidString
     private static bool InvalidOrNotAllowed(string sValue, int iMinAllowed, int iMaxAllowed)
     {
       bool bResult, bInvalid, bNotAllowed;
@@ -123,19 +118,19 @@ namespace Esercizio_02_C
         Write($"Il numero deve essere fra {iMinAllowed} e {iMaxAllowed}");
       bResult = bInvalid || bNotAllowed;
       return bResult;
-    }
+    }//InvalidOrNotAllowed
     private static void WriteNumberQuestion()
     {
       Write("Inserisci un numero:");
-    }
+    }//WriteNumberQuestion
     private static void WriteStartBaseQuestion()
     {
       Write("Qual è la base del numero iniziale? (Fra 2 e 16)");
-    }
+    }//WriteStartBaseQuestion
     private static void WriteEndBaseQuestion()
     {
       Write("In quale base vuole convertire? (Fra 2 e 16)");
-    }
+    }//WriteEndBaseQuestion
     private static string GetEndMessage(string sStartNumber, int iStartBase, List<string> lstEndNumber, int iDesiredBase)
     {
       string sEndNumber = string.Concat(lstEndNumber);
