@@ -6,7 +6,6 @@ namespace Esercizio_02_C
     public static void Main(string[] args)
     {
       //TODO: 11010 base 2 => 110 doveva ritornare => 1A
-      //TODO: Deletare funzione Write, cambiare tutti per Console.Write
       //TODO: Implementare testi unitari estensivi
 
       //Dichiarazione di variabile
@@ -42,18 +41,18 @@ namespace Esercizio_02_C
 
         if (string.IsNullOrEmpty(sEndNumber))
         {
-          Write(GetEndMessage(sStartNumber, iStartBase, lstResult, iDesiredBase));
+          Console.WriteLine(GetEndMessage(sStartNumber, iStartBase, lstResult, iDesiredBase));
         }
         else
         {
-          Write(GetEndMessage(sStartNumber, iStartBase, sEndNumber, iDesiredBase));
+          Console.WriteLine(GetEndMessage(sStartNumber, iStartBase, sEndNumber, iDesiredBase));
         }
         CheckContinue();
       }
     }//Main
     private static void CheckContinue()
     {
-      Write("\nVuole continuare? (N per uscire)");
+      Console.WriteLine("\nVuole continuare? (N per uscire)");
       string sUpperInput = AskInput().ToUpper();
       if (sUpperInput.Equals("N"))
       {
@@ -91,7 +90,7 @@ namespace Esercizio_02_C
     }//AskValidNumber
     private static void WriteInvalidValue(char cDigit, int iBase)
     {
-      Write($"\nIl valore {cDigit} non è valido per la base: {iBase}");
+      Console.WriteLine($"\nIl valore {cDigit} non è valido per la base: {iBase}");
     }//WriteInvalidValue
     private static bool InvalidString(string sValue, int iBase, SortedDictionary<char, int> dctDecimalValues)
     {
@@ -112,23 +111,23 @@ namespace Esercizio_02_C
       bInvalid = !int.TryParse(sValue, out int iNumber);
       bNotAllowed = !(iNumber > (iMinAllowed - 1) && iNumber < (iMaxAllowed + 1));
       if (bInvalid)
-        Write($"\n{sValue} non è um numero intero.");
+        Console.WriteLine($"\n{sValue} non è um numero intero.");
       if (bNotAllowed)
-        Write($"Il numero deve essere fra {iMinAllowed} e {iMaxAllowed}");
+        Console.WriteLine($"Il numero deve essere fra {iMinAllowed} e {iMaxAllowed}");
       bResult = bInvalid || bNotAllowed;
       return bResult;
     }//InvalidOrNotAllowed
     private static void WriteNumberQuestion()
     {
-      Write("Inserisci un numero:");
+      Console.WriteLine("Inserisci un numero:");
     }//WriteNumberQuestion
     private static void WriteStartBaseQuestion()
     {
-      Write("Qual è la base del numero iniziale? (Fra 2 e 16)");
+      Console.WriteLine("Qual è la base del numero iniziale? (Fra 2 e 16)");
     }//WriteStartBaseQuestion
     private static void WriteEndBaseQuestion()
     {
-      Write("In quale base vuole convertire? (Fra 2 e 16)");
+      Console.WriteLine("In quale base vuole convertire? (Fra 2 e 16)");
     }//WriteEndBaseQuestion
     private static string GetEndMessage(string sStartNumber, int iStartBase, List<string> lstEndNumber, int iDesiredBase)
     {
@@ -144,10 +143,6 @@ namespace Esercizio_02_C
       sResult += $"\nSi diventa in: {sEndNumber}\t Nella base: {iDesiredBase}";
       return sResult;
     }//GetEndMessage(string, int, STRING, int) -- POLIMORF
-    public static void Write(string sTesto)
-    {
-      Console.WriteLine(sTesto);
-    }//Write
     public static string AskInput()
     {
       string? sInput;
@@ -163,7 +158,7 @@ namespace Esercizio_02_C
       }
       catch (Exception)
       {
-        Write("Valore massimo per la base: 16");
+        Console.WriteLine("Valore massimo per la base: 16");
         return false;
       }
       return bResult;
