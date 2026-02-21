@@ -6,7 +6,6 @@ namespace Esercizio_02_C
     public static void Main(string[] args)
     {
       //TODO: 11010 base 2 => 110 doveva ritornare => 1A
-      //TODO: Maiusculas não estão sendo aceitas, como no caso de FFF para base 16 e deveria.
       //TODO: Deletare funzione Write, cambiare tutti per Console.Write
       //TODO: Implementare testi unitari estensivi
 
@@ -153,7 +152,7 @@ namespace Esercizio_02_C
     {
       string? sInput;
       sInput = Console.ReadLine();
-      return sInput;
+      return sInput.ToUpper();
     }//AskInput
     public static bool ValidBase(string sBase)
     {
@@ -197,23 +196,22 @@ namespace Esercizio_02_C
     {
       SortedDictionary<char, int> dctResult = new()
       {
-        {'1', 01},
         {'0', 00},
-        {'3', 03},
+        {'1', 01},
         {'2', 02},
-        {'5', 05},
+        {'3', 03},
         {'4', 04},
-        {'7', 07},
+        {'5', 05},
         {'6', 06},
-        {'b', 11},
-        {'9', 09},
-        {'a', 10},
-        {'c', 12},
+        {'7', 07},
         {'8', 08},
-        {'e', 14},
-        {'d', 13},
-        {'g', 16},
-        {'f', 15},
+        {'9', 09},
+        {'A', 10},
+        {'B', 11},
+        {'C', 12},
+        {'D', 13},
+        {'E', 14},
+        {'F', 15},
       };
       return dctResult;
     }//GetHexdecimalToDecimalValues
