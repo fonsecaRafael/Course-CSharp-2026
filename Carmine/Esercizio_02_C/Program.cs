@@ -5,7 +5,6 @@
     public static void Main(string[] args)
     {
       //TODO: Implementare testi unitari estensivi
-
       //Dichiarazione di variabile
       List<string> lstResult = new();
       SortedDictionary<char, int> dctDecimalValues = GetHexdecimalToDecimalValues();
@@ -14,39 +13,37 @@
       while (true)
       {
         Console.Clear();
-        int iStartBase = GetValidBase(WriteStartBaseQuestion, 2, 16);
+        int iStartBase = GetValidBase(StartBaseMessage, 2, 16);
         Dictionary<char, int> dctInitialBaseAlphabet = GetBaseAlphabet(iStartBase, dctDecimalValues);
-        string sStartNumber = GetValidString(WriteNumberQuestion, iStartBase, dctInitialBaseAlphabet);
-
-        int iDesiredBase = GetValidBase(WriteEndBaseQuestion, 2, 16);
-
+        string sStartNumber = GetValidString(StartNumberMessage, iStartBase, dctInitialBaseAlphabet);
+        int iTargetBase = GetValidBase(TargetBaseMessage, 2, 16);
 
         string sEndNumber = "";
-        if (iStartBase == iDesiredBase)
+        if (iStartBase == iTargetBase)
         {
           sEndNumber = sStartNumber;
         }
         else if (iStartBase == 10)
         {
-          lstResult = SuccessiveDivisions(int.Parse(sStartNumber), iDesiredBase);
+          lstResult = SuccessiveDivisions(int.Parse(sStartNumber), iTargetBase);
         }
-        else if (iDesiredBase == 10)
+        else if (iTargetBase == 10)
         {
           sEndNumber = $"{ConvertBase10(sStartNumber, iStartBase, dctDecimalValues)}";
         }
         else
         {
           int iStartNumber = ConvertBase10(sStartNumber, iStartBase, dctDecimalValues);
-          lstResult = SuccessiveDivisions(iStartNumber, iDesiredBase);
+          lstResult = SuccessiveDivisions(iStartNumber, iTargetBase);
         }
 
         if (string.IsNullOrEmpty(sEndNumber))
         {
-          Console.WriteLine(GetEndMessage(sStartNumber, iStartBase, lstResult, iDesiredBase));
+          Console.WriteLine(GetEndMessage(sStartNumber, iStartBase, lstResult, iTargetBase));
         }
         else
         {
-          Console.WriteLine(GetEndMessage(sStartNumber, iStartBase, sEndNumber, iDesiredBase));
+          Console.WriteLine(GetEndMessage(sStartNumber, iStartBase, sEndNumber, iTargetBase));
         }
         CheckContinue();
       }
@@ -122,30 +119,30 @@
       bResult = bInvalid || bNotAllowed;
       return bResult;
     }//InvalidOrNotAllowed
-    private static void WriteNumberQuestion()
+    private static void StartNumberMessage()
     {
       Console.WriteLine("Inserisci un numero:");
-    }//WriteNumberQuestion
-    private static void WriteStartBaseQuestion()
+    }//StartNumberMessage
+    private static void StartBaseMessage()
     {
       Console.WriteLine("Qual è la base del numero iniziale? (Fra 2 e 16)");
-    }//WriteStartBaseQuestion
-    private static void WriteEndBaseQuestion()
+    }//StartBaseMessage
+    private static void TargetBaseMessage()
     {
       Console.WriteLine("In quale base vuole convertire? (Fra 2 e 16)");
-    }//WriteEndBaseQuestion
-    private static string GetEndMessage(string sStartNumber, int iStartBase, List<string> lstEndNumber, int iDesiredBase)
+    }//TargetBaseMessage
+    private static string GetEndMessage(string sStartNumber, int iStartBase, List<string> lstEndNumber, int iTargetBase)
     {
       string sEndNumber = string.Concat(lstEndNumber);
       string sResult = $"\nIl numero    : {sStartNumber}\t Nella base: {iStartBase}";
-      sResult += $"\nSi diventa in: {sEndNumber}\t Nella base: {iDesiredBase}";
+      sResult += $"\nSi diventa in: {sEndNumber}\t Nella base: {iTargetBase}";
       return sResult;
     }//GetEndMessage(string, int, List<string>, int)
 
-    private static string GetEndMessage(string sStartNumber, int iStartBase, string sEndNumber, int iDesiredBase)
+    private static string GetEndMessage(string sStartNumber, int iStartBase, string sEndNumber, int iTargetBase)
     {
       string sResult = $"\nIl numero    : {sStartNumber}\t Nella base: {iStartBase}";
-      sResult += $"\nSi diventa in: {sEndNumber}\t Nella base: {iDesiredBase}";
+      sResult += $"\nSi diventa in: {sEndNumber}\t Nella base: {iTargetBase}";
       return sResult;
     }//GetEndMessage(string, int, STRING, int) -- POLIMORF
     public static string AskInput()
@@ -179,14 +176,14 @@
       }
       return iInBase10;
     }//ForBase10
-    public static List<string> SuccessiveDivisions(int iInBase10, int iBaseDesired)
+    public static List<string> SuccessiveDivisions(int iInBase10, int iBaseTarget)
     {
       List<string> lstResult = [];
       int iResto;
       while (iInBase10 > 0)
       {
-        iResto = iInBase10 % iBaseDesired;
-        iInBase10 /= iBaseDesired;
+        iResto = iInBase10 % iBaseTarget;
+        iInBase10 /= iBaseTarget;
         string cAux = GetAlphabetValue(iResto);
         lstResult.Add(cAux);
       }
@@ -211,7 +208,7 @@
       {
         return $"{iKey}";
       }
-    }
+    }//GetAlphabetValue
 
     private static SortedDictionary<char, int> GetHexdecimalToDecimalValues()
     {
