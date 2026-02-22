@@ -1,11 +1,9 @@
-﻿using System;
-namespace Esercizio_02_C
+﻿namespace Esercizio_02_C
 {
   internal class Program
   {
     public static void Main(string[] args)
     {
-      //TODO: 11010 base 2 => 110 doveva ritornare => 1A
       //TODO: Implementare testi unitari estensivi
 
       //Dichiarazione di variabile
@@ -17,8 +15,11 @@ namespace Esercizio_02_C
       {
         Console.Clear();
         int iStartBase = GetValidBase(WriteStartBaseQuestion, 2, 16);
-        string sStartNumber = GetValidString(WriteNumberQuestion, iStartBase, dctDecimalValues);
+        Dictionary<char, int> dctInitialBaseAlphabet = GetBaseAlphabet(iStartBase, dctDecimalValues);
+        string sStartNumber = GetValidString(WriteNumberQuestion, iStartBase, dctInitialBaseAlphabet);
+
         int iDesiredBase = GetValidBase(WriteEndBaseQuestion, 2, 16);
+
 
         string sEndNumber = "";
         if (iStartBase == iDesiredBase)
@@ -59,7 +60,7 @@ namespace Esercizio_02_C
         Environment.Exit(0);
       }
     }//CheckContinue
-    private static string GetValidString(Action WriteQuestion, int iBase, SortedDictionary<char, int> dctDecimalValues)
+    private static string GetValidString(Action WriteQuestion, int iBase, Dictionary<char, int> dctDecimalValues)
     {
       string sResult;
       WriteQuestion();
@@ -92,9 +93,8 @@ namespace Esercizio_02_C
     {
       Console.WriteLine($"\nIl valore {cDigit} non è valido per la base: {iBase}");
     }//WriteInvalidValue
-    private static bool InvalidString(string sValue, int iBase, SortedDictionary<char, int> dctDecimalValues)
+    private static bool InvalidString(string sValue, int iBase, Dictionary<char, int> dctAlphabet)
     {
-      Dictionary<char, int> dctAlphabet = dctDecimalValues.Take(iBase).ToDictionary(x => x.Key, x => x.Value);
       foreach (char caracter in sValue)
       {
         if (!dctAlphabet.ContainsKey(caracter))
@@ -105,6 +105,11 @@ namespace Esercizio_02_C
       }
       return false;
     }//InvalidString
+    private static Dictionary<char, int> GetBaseAlphabet(int iBase, SortedDictionary<char, int> dctDecimalValues)
+    {
+      var result = dctDecimalValues.Take(iBase).ToDictionary(x => x.Key, x => x.Value);
+      return result;
+    }
     private static bool InvalidOrNotAllowed(string sValue, int iMinAllowed, int iMaxAllowed)
     {
       bool bResult, bInvalid, bNotAllowed;
@@ -182,11 +187,32 @@ namespace Esercizio_02_C
       {
         iResto = iInBase10 % iBaseDesired;
         iInBase10 /= iBaseDesired;
-        lstResult.Add(iResto.ToString());
+        string cAux = GetAlphabetValue(iResto);
+        lstResult.Add(cAux);
       }
       lstResult.Reverse();
       return lstResult;
     }//SuccessiveDivisions
+
+    private static string GetAlphabetValue(int iKey)
+    {
+      Dictionary<int, string> dTranslator = new();
+      if (iKey > 9)
+      {
+        dTranslator.Add(10, "A");
+        dTranslator.Add(11, "B");
+        dTranslator.Add(12, "C");
+        dTranslator.Add(13, "D");
+        dTranslator.Add(14, "E");
+        dTranslator.Add(15, "F");
+        return dTranslator[iKey];
+      }
+      else
+      {
+        return $"{iKey}";
+      }
+    }
+
     private static SortedDictionary<char, int> GetHexdecimalToDecimalValues()
     {
       SortedDictionary<char, int> dctResult = new()
