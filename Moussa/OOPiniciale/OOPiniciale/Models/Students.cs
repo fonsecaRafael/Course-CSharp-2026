@@ -14,7 +14,7 @@ public class Students : People
   #region Methods
   public override string ToString()
   {
-    return $"Nome completo: {Name} {Surname}\nGender: {Gender} Età: {Age} anni";
+    return $"\nStudenti:Nome completo: {Name} {Surname}\nGender: {Gender} Età: {Age} anni";
   }
   #endregion
 }
