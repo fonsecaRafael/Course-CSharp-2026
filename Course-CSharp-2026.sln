@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stampa", "Moussa\Stampa\Sta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvaloniaApp", "Moussa\AvaloniaApp\AvaloniaApp.csproj", "{58ED436A-D022-43EB-B106-14AA141CD3FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestioneFile", "Carmine\GestioneFile\GestioneFile.csproj", "{1ABFF9FD-3D5A-447B-ADD0-CE93FE29296F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{58ED436A-D022-43EB-B106-14AA141CD3FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58ED436A-D022-43EB-B106-14AA141CD3FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58ED436A-D022-43EB-B106-14AA141CD3FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ABFF9FD-3D5A-447B-ADD0-CE93FE29296F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ABFF9FD-3D5A-447B-ADD0-CE93FE29296F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ABFF9FD-3D5A-447B-ADD0-CE93FE29296F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ABFF9FD-3D5A-447B-ADD0-CE93FE29296F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,5 +83,6 @@ Global
 		{976FD28A-1252-427E-8731-E1BBE7021217} = {20486CA9-5F88-4ACD-8E49-AE20C7447C21}
 		{A01D1796-41FC-45FD-9FAA-38633FD758D9} = {53A6C08D-4F4B-4F5F-83D0-760108356475}
 		{58ED436A-D022-43EB-B106-14AA141CD3FF} = {53A6C08D-4F4B-4F5F-83D0-760108356475}
+		{1ABFF9FD-3D5A-447B-ADD0-CE93FE29296F} = {DEBB4A1E-2811-4E64-BF3E-37EAF1C18675}
 	EndGlobalSection
 EndGlobal
